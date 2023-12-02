@@ -20,6 +20,7 @@ class ComentsFactory extends Factory
             'coments' => $this->faker->sentence(mt_rand(3,8)),
             'users_id'  => mt_rand(1,10),
             'posts_id'  => mt_rand(1,20),
+            'image_coments'  => $this->faker->sentence(mt_rand(1,2)),
 
         ];
     }

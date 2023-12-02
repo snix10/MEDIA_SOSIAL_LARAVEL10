@@ -10,180 +10,114 @@
     <link rel="stylesheet" href="{{ asset('style.css') }}">
 
     <!------------------LIght BOx for Gallery-------------->
-    <link rel="stylesheet" href="lightbox.min.css">
+    <link rel="stylesheet" href="{{ asset('lightbox.min.css') }}">
     <script type="text/javascript" src="{{ asset('lightbox-plus-jquery.min.js') }}"></script>
     <!------------------LIght BOx for Gallery-------------->
-    <title>Application-1</title>
+    <title>App sosial media</title>
 </head>
 
-<body class="fw-light">
+<body class="fw-light ">
 
 
-    <!-------------------------------NAvigation Starts------------------>
+    <!-------------------------------NAVIGASI ATAU NAVBAR------------------>
 
     @include('components.navbar')
 
-    <!---------------------------------------------Ends navigation------------------------------>
+    <!---------------------------END NAVIGASI ATAU NAVBAR------------------>
+
+    <!-- MODAL LOGOUT-->
+    <div class="modal fade" id="staticBackdropLogout" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">MEDIA</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    log out
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <form action="/logout" method="post">
+                        @csrf
+                        <button type="submit" class="btn btn-danger"><i class="fa-solid fa-right-from-bracket"></i> Log
+                            Out</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--END MODAL LOGOUT-->
 
 
+    <!-------------------------------------------CONTAINER ATAU GRID--------------------------------->
 
-    <!-------------------------------------------Start Grids layout for lg-xl-3 columns and (xs-lg 1 columns)--------------------------------->
 
-
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
 
 
-            <!--------------------------left columns  start -- profile,about,photos -------------->
+            <!--------------------------COLUMN START ATAU COLOMN PERTAMA (PROFILE, ABOUT, IMAGE, PHOTOS) -------------->
 
             @include('media.columstart')
 
-            <!--------------------------Ends Left columns-->
+            <!---------------------END COLUMN START ATAU COLOMN PERTAMA (PROFILE, ABOUT, IMAGE, PHOTOS) -------------->
 
-            <!---------------------------------------Middle columns  start---------------->
 
+            <!-------------------------------------COLUMN MIDDLE ATAU COLUMN TENGAH (POST , FORM POST, ALERT)---------------->
             <div class="col-12 col-lg-6">
 
-
                 <div class="middle-column">
-                    @if (request('home'))
-                    @else
-                        <input type="hidden" name="category" value="{{ request('category') }}">
 
-                        <div class="card">
+                    @yield('formposts')
 
+                    @include('components.alert')
 
 
-                            <div class="card-header bg-transparent">
-                                <form class="form-inline" method="POST" action="{{ route('home.store') }}">
-                                    @csrf
-
-
-                                    <div class="input-group w-100">
-                                        <input type="text" name="posts" id="post" placeholder="Post"
-                                            class="form-control form-control-md rounded">
-
-                                        <div class="input-group-append">
-
-                                            <button type="submit" class="btn ">
-                                                <i class="hover-blue fa-solid fa-paper-plane"></i>
-                                            </button>
-
-                                            <button class="btn   top-0 end-0 border-0 " type="button"
-                                                data-bs-toggle="collapse" data-bs-target="#collapseExamplePost"
-                                                aria-expanded="false" aria-controls="collapseExamplePost"
-                                                data-bs-toggle="tooltip" data-bs-placement="top" title="kirim">
-
-                                                <i class=" fa-solid fa-folder"></i>
-                                            </button>
-
-
-                                        </div>
-
-
-
-                                    </div>
-                                    <div class="collapse" id="collapseExamplePost">
-                                        <div class="card card-body bottom-0 end-0">
-
-                                            <a class="text-dark" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                title="hapus"> <i class="hover-red fa-solid fa-trash"
-                                                    data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                </i></a>
-                                        </div>
-                                    </div>
-                                </form>
-
-                            </div>
-                        </div>
-                    @endif
-
-                    {{-- alert atau pemeberitahuan atau notif // bahwa login kita sudah berhasil --}}
-                    @if (session()->has('loginberhasil'))
-                        <div class="card-body mt-2 ">
-                            <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                                <strong>{{ session('loginberhasil') }}</strong>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                    aria-label="Close"></button>
-                            </div>
-                        </div>
-                    @endif
-
-                    {{-- alert atau pemeberitahuan atau notif yang kedua // bahwa login kita sudah berhasil --}}
-                    @if (session()->has('loginberhasil'))
-                        <div class="card-body mt-2  ">
-                            <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                                <small>ini web seperti forum , mengajukan pertanyaan atau permasalahan apapun , dan
-                                    orang akan memberi
-                                    comentar</small>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                    aria-label="Close"></button>
-                            </div>
-                        </div>
-                    @endif
-
-                    {{-- alert atau pemeberitahuan atau notif // bahwa post kita sudah berhasil --}}
-                    @if (session('berhasil'))
-                        <div class="card-body mt-2  ">
-                            <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                                <small>{{ session('berhasil') }}</small>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                    aria-label="Close"></button>
-                            </div>
-                        </div>
-                    @endif
-
-                    {{-- alert atau pemeberitahuan atau notif Hapus // bahwa post kita sudah berhasil di Hapus --}}
-                    @if (session('hapus'))
-                        <div class="card-body mt-2  ">
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <small>{{ session('hapus') }}</small>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                    aria-label="Close"></button>
-                            </div>
-                        </div>
-                    @endif
-
-
-
-                    <!--------------------content post--colum middle---------------------->
+                    <!--------------------POST, EDIT POST, SHOW POST AND COMMENT, EDIT,COMMENT---------------------->
                     @yield('posts')
 
                     @yield('edit')
 
                     @yield('show')
-                    <!--------------------End content post---------------------->
+
+                    @yield('editComment')
+                    <!-------------    END POST, EDIT POST, SHOW POST AND COMMENT, EDIT,COMMENT---------------------->
 
 
                 </div>
-
             </div>
 
+            <!--------------------------------END COLUMN MIDDLE ATAU COLUMN TENGAH (POST , FORM POST, ALERT)---------------->
 
 
-            <!------------------------Middle column Ends---------------->
-
-            <!---------------------------Statrs Right Columns----------------->
+            <!---------------------------COLUMN END ATAU COLUMN TERAKHIR ----------------->
 
             @include('media.columend')
 
+            <!---------------------END COLUMN END ATAU COLUMN TERAKHIR ----------------->
+
+        </div>
+    </div>
+
+    <!---------------------------------------END CONTAINER ATAU GRID--------------------------------->
 
 
-            <!------------------------Light BOx OPtions------------->
-            <script>
-                lightbox.option({
+    <!------------------------Light BOx OPtions------------->
+    <script>
+        lightbox.option({
 
-                })
-            </script>
+        })
+    </script>
+
+    <!------------------------Light BOx OPtions------------->
 
 
 
-
-            <!------------------------Light BOx OPtions------------->
-
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-            <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
 
 
 

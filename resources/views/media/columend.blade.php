@@ -1,8 +1,9 @@
+
 <div class="col-12 col-lg-3">
 
     <div class="right-column">
 
-        <div class="card shadow-sm mb-4">
+        <div class="card shadow mb-4 ">
             <div class="card-body">
                 <h6 class="card-title">Sponsored</h6>
                 <img src="img/right1.jpg" alt="card-img" class="card-img mb-3">
@@ -18,7 +19,7 @@
         </div>
 
 
-        <div class="card shadow-sm mb-4">
+        <div class="card shadow mb-4 ">
 
             <div class="card-body">
 
@@ -58,7 +59,7 @@
             </div>
         </div>
 
-        <div class="card shadow-sm">
+        <div class="card shadow ">
             <div class="card-body">
                 <p>&copy; 2018 Bootstrap
                     <a href="#">About</a>
@@ -80,4 +81,4 @@
 
     </div>
 </div>
-</div>
+

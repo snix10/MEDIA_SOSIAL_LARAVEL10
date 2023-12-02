@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,6 +13,7 @@ class posts extends Model
     protected $fillable = [
         'users_id',
         'posts',
+        'image',
     ];
 
     protected $with = ['user'];
@@ -22,6 +24,7 @@ class posts extends Model
     {
         return $this->hasMany(coments::class);
     }
+
 
     public function user()
     {

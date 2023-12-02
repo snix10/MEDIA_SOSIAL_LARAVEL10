@@ -37,7 +37,7 @@ class PostsPolicy
      */
     public function update(User $user, posts $posts): bool
     {
-        //
+        return $posts->users_id === $user->id;
     }
 
     /**
@@ -45,7 +45,8 @@ class PostsPolicy
      */
     public function delete(User $user, posts $posts): bool
     {
-        //
+        return $posts->users_id === $user->id;
+
     }
 
     /**

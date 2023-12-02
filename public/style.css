@@ -6,11 +6,11 @@
       background-color: #F5F8FA;
       font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
       margin: 0;
-      font-weight: 300;
+      font-weight:300;
       line-height: 1.6;
       color: #212529;
       text-align: left;
-      font-size: small;
+      font-size: 15px;
   }
 
 .banner{
@@ -103,6 +103,21 @@
 .hover-blue:hover{
     color: #2e17c0;
 }
+
+
+.nav-icon {
+    font-size: 20px;
+}
+
+.nav-i:hover{
+    background-color: #1299f4;
+}
+
+.bg-custom{
+    background-color: #1299f4;
+}
+
+
 
 
 

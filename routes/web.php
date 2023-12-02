@@ -5,6 +5,7 @@ use App\Http\Controllers\homeController;
 use App\Http\Controllers\commentController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\siginController;
+use App\Http\Controllers\profileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +18,6 @@ use App\Http\Controllers\siginController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('home');
-// });
 
 
 
@@ -34,6 +32,10 @@ Route::post('/sigin',[siginController::class,'store']);
 
 
 Route::resource('home', homeController::class)->middleware(['auth','verified']);
+
+
+Route::resource('profile', profileController::class)->middleware(['auth','verified']);
+
 
 Route::resource('home/{id}/comment',commentController::class)->middleware(['auth','verified']);
 

@@ -14,6 +14,7 @@ class coments extends Model
         'posts_id',
         'users_id',
         'coments',
+        'image_coments',
     ];
 
 
